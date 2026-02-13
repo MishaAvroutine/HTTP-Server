@@ -30,7 +30,7 @@ int main(int argc,const char** argv)
     {
         int port = std::stoi(argv[PORT_IDX]);
         Server server(port);
-        server.bind();
+        server.bindServer();
 
     }
     catch (const std::exception& exp)
