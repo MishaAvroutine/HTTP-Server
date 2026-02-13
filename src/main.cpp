@@ -1,8 +1,17 @@
 #pragma comment(lib, "Ws2_32.lib")
 #include"Server.h"
 
+#define PORT_IDX 1
+
+
 int main(int argc,const char** argv)
 {
+    if (argc != 2)
+    {
+        std::cerr << "Usage: HttpServer <port>" << std::endl;
+        return 1;
+    }
+
     // init wsa
     WSADATA wsaData;
     WORD wVersionRequested = MAKEWORD(2, 2);
@@ -17,5 +26,16 @@ int main(int argc,const char** argv)
         return 1;
     }
 
+    try
+    {
+        int port = std::stoi(argv[PORT_IDX]);
+        Server server(port);
+        server.bind();
 
+    }
+    catch (const std::exception& exp)
+    {
+        std::cerr << exp.what() << std::endl;
+    }
+    return 0;
 }
