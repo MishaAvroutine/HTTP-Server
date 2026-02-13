@@ -124,11 +124,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\HttpReponseOk200.cpp" />
+    <ClCompile Include="..\src\HttpResponse.cpp" />
+    <ClCompile Include="..\src\HttpResponseNotFound404.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Server.cpp" />
     <ClCompile Include="..\src\SocketUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\HttpReponseOk200.h" />
+    <ClInclude Include="..\src\HttpResponse.h" />
+    <ClInclude Include="..\src\HttpResponseNotFound404.h" />
     <ClInclude Include="..\src\Server.h" />
     <ClInclude Include="..\src\SocketUtils.h" />
   </ItemGroup>

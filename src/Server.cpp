@@ -17,7 +17,7 @@ Server::~Server()
 	}
 	catch (...)
 	{
-		throw std::exception(__FUNCTION__ " - faild to close socket");
+		throw std::exception(__FUNCTION__ " - failed to close socket");
 	}
 }
 
@@ -61,21 +61,22 @@ void Server::handleClient(const SOCKET& clientSocket)
 	try
 	{
 		// since Http is a stateless protocol, no loops needed, HTTP GET -> response ->  disconnect
-		char buf[KB * 4];
-		int read = recv(clientSocket, buf, KB * 4, 0);
+		char buf[4 * KB];
+		int read = recv(clientSocket, buf, 4 * KB, 0);
 		buf[read] = '\0';
 
 		std::string headers(buf);
 	
-		std::string response;
+		HttpResponse* response = nullptr;
 		if (headers.find("GET /") == 0)
 		{
 			response = handleGETRequest(headers);
 		}
-
-		SocketUtils::sendToClient(response, clientSocket);
+		if(response != nullptr)
+			SocketUtils::sendToClient(response->getHeaders(), clientSocket);
 
 		disconnectClient(clientSocket);
+		delete response;
 	}
 	catch (const std::exception& exp)
 	{
@@ -90,24 +91,59 @@ void Server::disconnectClient(const SOCKET& socket)
 	closesocket(socket);
 }
 
-std::string Server::handleGETRequest(std::string& request)
+HttpResponse* Server::handleGETRequest(std::string& request)
 {
-	/*std::stringstream requestStream(request);
+	std::stringstream requestStream(request);
 	std::string line;
-	std::getline(requestStream,line);
+	std::getline(requestStream, line);
+
 	size_t it = line.find(" HTTP/1.1");
 	if (it == std::string::npos)
-		throw std::exception(__FUNCTION__ " - invalid http GET");
-	std::string fileName = line.substr(GET_PREFIX_LEN, it - GET_PREFIX_LEN);*/
+		throw std::runtime_error("Invalid HTTP GET");
 
-	std::stringstream oss;
+	std::string fileName = line.substr(GET_PREFIX_LEN, it - GET_PREFIX_LEN);
 
-	oss << "HTTP/1.1 200 OK\r\n";
-	oss << "Content-Type: text/plain\r\n";
-	oss << "Content-Length: 5\r\n";
-	oss << "Connection: keep-alive\r\n";
-	oss << "\r\n";
-	oss << "Hello";
+	if (fileName.empty() || fileName == "/")
+		fileName = INDEX_FILE;
 
-	return oss.str();
+	if (fileName.front() == '/')
+		fileName.erase(0, 1);
+
+	if (fileName.find("..") != std::string::npos)
+		return new HttpResponse("HTTP/1.1 403 Forbidden\r\n\r\n");
+
+	return getResponse(fileName);
+}
+
+
+HttpResponse* Server::getResponse(const std::string& fileName)
+{
+	std::string content = readFile(fileName);
+	return responseCode(content, fileName);
+}
+
+HttpResponse* Server::responseCode(const std::string& contents,const std::string& fileName)
+{
+	HttpResponse* response = nullptr;
+	switch (contents.size())
+	{
+	case 0:
+		response = new HttpResponseNotFound404();
+		break;
+	default:
+		response = new HttpReponseOk200(contents,fileName);
+		break;
+	}
+	return response;
+}
+
+std::string Server::readFile(const std::string& fileName)
+{
+	std::ifstream file("../ServerFiles/" + fileName, std::ios::binary);
+	if (!file.is_open())
+		return "";
+
+	std::ostringstream ss;
+	ss << file.rdbuf();
+	return ss.str();
 }
