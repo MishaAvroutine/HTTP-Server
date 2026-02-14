@@ -11,7 +11,6 @@
 #include"HttpResponses/HttpResponses.h"
 
 #define LOAD_BALANCE 16 // change this according to your power of computing. since i don't wanna blow up my pc
-#define KB 1024
 
 #define GET_PREFIX_LEN 5
 

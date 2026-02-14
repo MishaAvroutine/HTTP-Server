@@ -71,11 +71,7 @@ void Server::handleClient(const SOCKET& clientSocket)
 	try
 	{
 		// since Http is a stateless protocol, no loops needed, HTTP GET -> response ->  disconnect
-		char buf[4 * KB];
-		int read = recv(clientSocket, buf, 4 * KB, 0);
-		buf[read] = '\0';
-
-		std::string headers(buf);
+		std::string headers = SocketUtils::recvFromClient(clientSocket);
 	
 		HttpResponse* response = nullptr;
 		if (headers.find("GET /") == 0)
