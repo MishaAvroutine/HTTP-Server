@@ -68,26 +68,42 @@ ouput: none
 */
 void Server::handleClient(const SOCKET& clientSocket)
 {
-	try
+	while (true)
 	{
-		// since Http is a stateless protocol, no loops needed, HTTP GET -> response ->  disconnect
-		std::string headers = SocketUtils::recvFromClient(clientSocket);
-	
-		HttpResponse* response = nullptr;
-		if (headers.find("GET /") == 0)
+		try
 		{
-			response = handleGETRequest(headers);
-		}
-		if(response != nullptr)
-			SocketUtils::sendToClient(response->getHeaders(), clientSocket);
+			std::string headers = SocketUtils::recvFromClient(clientSocket);
 
-		disconnectClient(clientSocket);
-		delete response;
+			if (headers.empty())
+				break;
+
+			std::unique_ptr<HttpResponse> response;
+
+			std::istringstream iss(headers);
+			std::string method;
+			iss >> method;
+
+			if (method == "GET")
+			{
+				response.reset(handleGETRequest(headers));
+			}
+
+			if (response)
+			{
+				SocketUtils::sendToClient(response->getHeaders(), clientSocket);
+			}
+
+			if (headers.find("Connection: keep-alive") == std::string::npos)
+				break;
+		}
+		catch (const std::exception& exp)
+		{
+			std::cerr << exp.what() << std::endl;
+			break;
+		}
 	}
-	catch (const std::exception& exp)
-	{
-		std::cerr << exp.what() << std::endl;
-	}
+
+	disconnectClient(clientSocket);
 }
 
 /*
