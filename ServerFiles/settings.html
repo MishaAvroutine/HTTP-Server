@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Attack Visualization</title>
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div class="header">
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">🌍 LIVE MAP</a>
+            <a href="dashboard.html" class="nav-link">📊 DASHBOARD</a>
+            <a href="alerts.html" class="nav-link">⚠️ ALERTS</a>
+            <a href="analytics.html" class="nav-link">📈 ANALYTICS</a>
+            <a href="settings.html" class="nav-link active">⚙️ SETTINGS</a>
+        </div>
+        <div class="title">⚙️ SETTINGS</div>
+    </div>
+
+    <div class="main-content">
+        <div class="settings-container">
+            <div class="settings-section">
+                <div class="section-title">🔐 Security Settings</div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Real-Time Attack Blocking</div>
+                        <div class="setting-description">Automatically block detected attacks</div>
+                    </div>
+                    <div class="toggle on" onclick="toggleSwitch(this)"></div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">DDoS Protection</div>
+                        <div class="setting-description">Enable DDoS mitigation filters</div>
+                    </div>
+                    <div class="toggle on" onclick="toggleSwitch(this)"></div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Firewall Rules</div>
+                        <div class="setting-description">Enforce strict firewall policies</div>
+                    </div>
+                    <div class="toggle on" onclick="toggleSwitch(this)"></div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">IP Whitelisting</div>
+                        <div class="setting-description">Allow only trusted IP addresses</div>
+                    </div>
+                    <div class="toggle" onclick="toggleSwitch(this)"></div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-title">📢 Notification Settings</div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Email Alerts</div>
+                        <div class="setting-description">Receive threat notifications via email</div>
+                    </div>
+                    <div class="toggle on" onclick="toggleSwitch(this)"></div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">SMS Alerts</div>
+                        <div class="setting-description">Critical threats via SMS</div>
+                    </div>
+                    <div class="toggle on" onclick="toggleSwitch(this)"></div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Sound Notifications</div>
+                        <div class="setting-description">Play alert sound for critical events</div>
+                    </div>
+                    <div class="toggle on" onclick="toggleSwitch(this)"></div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Severity Threshold</div>
+                        <div class="setting-description">Minimum severity for notifications</div>
+                    </div>
+                    <select class="select-field">
+                        <option>Critical Only</option>
+                        <option selected>High & Above</option>
+                        <option>Medium & Above</option>
+                        <option>All Events</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-title">⚙️ System Settings</div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Update Frequency</div>
+                        <div class="setting-description">How often data is refreshed</div>
+                    </div>
+                    <select class="select-field">
+                        <option>Real-time (1s)</option>
+                        <option selected>Normal (5s)</option>
+                        <option>Standard (10s)</option>
+                        <option>Low (30s)</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Dark Mode</div>
+                        <div class="setting-description">Use dark theme for UI</div>
+                    </div>
+                    <div class="toggle on" onclick="toggleSwitch(this)"></div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Auto-refresh Dashboard</div>
+                        <div class="setting-description">Automatically refresh data</div>
+                    </div>
+                    <div class="toggle on" onclick="toggleSwitch(this)"></div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Admin Email</div>
+                        <div class="setting-description">Primary contact for alerts</div>
+                    </div>
+                    <input type="email" class="input-field" placeholder="admin@example.com" value="admin@company.security">
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">API Key</div>
+                        <div class="setting-description">For external integrations</div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="generateAPIKey()">Generate New</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-title">🔧 Advanced Settings</div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Log Retention</div>
+                        <div class="setting-description">How long to keep security logs</div>
+                    </div>
+                    <select class="select-field">
+                        <option>30 Days</option>
+                        <option>90 Days</option>
+                        <option selected>1 Year</option>
+                        <option>2 Years</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Backup Frequency</div>
+                        <div class="setting-description">Automatic backup schedule</div>
+                    </div>
+                    <select class="select-field">
+                        <option selected>Daily</option>
+                        <option>Every 6 Hours</option>
+                        <option>Every 12 Hours</option>
+                        <option>Weekly</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <div class="setting-name">Enable Debug Mode</div>
+                        <div class="setting-description">Detailed logging for troubleshooting</div>
+                    </div>
+                    <div class="toggle" onclick="toggleSwitch(this)"></div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="saveSettings()">💾 Save Changes</button>
+                <button class="btn btn-secondary" onclick="resetSettings()">↺ Reset to Default</button>
+            </div>
+
+            <div id="statusMessage" class="status-message"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSwitch(element) {
+            element.classList.toggle('on');
+        }
+
+        function saveSettings() {
+            const message = document.getElementById('statusMessage');
+            message.className = 'status-message success';
+            message.textContent = '✓ Settings saved successfully!';
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 3000);
+        }
+
+        function resetSettings() {
+            const message = document.getElementById('statusMessage');
+            message.className = 'status-message success';
+            message.textContent = '↺ Settings reset to default values';
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 3000);
+        }
+
+        function generateAPIKey() {
+            const message = document.getElementById('statusMessage');
+            const newKey = 'sk_' + Math.random().toString(36).substr(2, 32).toUpperCase();
+            message.className = 'status-message success';
+            message.textContent = `Generated: ${newKey}`;
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

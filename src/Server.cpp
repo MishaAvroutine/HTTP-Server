@@ -39,6 +39,11 @@ void Server::bindServer()
 	start();
 }
 
+/*
+the accepting client loop
+input: none
+output: none
+*/
 void Server::start()
 {
 	while (true)
@@ -56,6 +61,11 @@ void Server::start()
 	}
 }
 
+/*
+the function that each thread exectutes for each client
+input: client socket
+ouput: none
+*/
 void Server::handleClient(const SOCKET& clientSocket)
 {
 	try
@@ -84,6 +94,9 @@ void Server::handleClient(const SOCKET& clientSocket)
 	}
 }
 
+/*
+function to disconnect client from server
+*/
 void Server::disconnectClient(const SOCKET& socket)
 {
 	connectedClients--;
@@ -91,7 +104,13 @@ void Server::disconnectClient(const SOCKET& socket)
 	closesocket(socket);
 }
 
-HttpResponse* Server::handleGETRequest(std::string& request)
+
+/*
+function to handle the HTTP GET request
+input: the request
+ouput: the ready packet after parsing
+*/
+HttpResponse* Server::handleGETRequest(const std::string& request)
 {
 	std::stringstream requestStream(request);
 	std::string line;
@@ -110,33 +129,50 @@ HttpResponse* Server::handleGETRequest(std::string& request)
 		fileName.erase(0, 1);
 
 	if (fileName.find("..") != std::string::npos)
-		return new HttpResponse("HTTP/1.1 403 Forbidden\r\n\r\n");
+		return new  HttpResponse403Forbidden();
 
 	return getResponse(fileName);
 }
 
 
+/*
+function to ge the response after parsing
+input: filename
+output: http mime header/data
+*/
 HttpResponse* Server::getResponse(const std::string& fileName)
 {
 	std::string content = readFile(fileName);
 	return responseCode(content, fileName);
 }
 
+
+/*
+function to get the httpResponse code packet
+input: contents of the file and it's filename
+output: the packet with the response ready including headers and the contents
+*/
 HttpResponse* Server::responseCode(const std::string& contents,const std::string& fileName)
 {
 	HttpResponse* response = nullptr;
 	switch (contents.size())
 	{
-	case 0:
-		response = new HttpResponseNotFound404();
-		break;
-	default:
-		response = new HttpReponseOk200(contents,fileName);
-		break;
+		case 0:
+			response = new HttpResponseNotFound404();
+			break;
+		default:
+			response = new HttpReponseOk200(contents,fileName);
+			break;
 	}
 	return response;
 }
 
+
+/*
+function to read the file with the filename
+input: std::string filename
+output: std::string contaning file contents
+*/
 std::string Server::readFile(const std::string& fileName)
 {
 	std::ifstream file("../ServerFiles/" + fileName, std::ios::binary);

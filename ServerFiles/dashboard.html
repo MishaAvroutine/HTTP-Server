@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Attack Visualization</title>
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="header">
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">🌍 LIVE MAP</a>
+            <a href="dashboard.html" class="nav-link active">📊 DASHBOARD</a>
+            <a href="alerts.html" class="nav-link">⚠️ ALERTS</a>
+            <a href="analytics.html" class="nav-link">📈 ANALYTICS</a>
+            <a href="settings.html" class="nav-link">⚙️ SETTINGS</a>
+        </div>
+        <div class="title">📊 DASHBOARD</div>
+    </div>
+
+    <div class="main-content">
+        <div class="stat-row">
+            <div class="stat-box">
+                <div class="stat-box-value" id="totalThreats">12,847</div>
+                <div class="stat-box-label">Total Threats</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-value" id="blockedAttacks">11,934</div>
+                <div class="stat-box-label">Blocked</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-value" id="successRate">92.8%</div>
+                <div class="stat-box-label">Success Rate</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-value" id="avgResponse">45ms</div>
+                <div class="stat-box-label">Avg Response</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-title">🔥 Critical Threats</div>
+                <div class="card-value">847</div>
+                <div class="card-subtext">Last 24 hours</div>
+            </div>
+            <div class="card">
+                <div class="card-title">⚡ Current Load</div>
+                <div class="card-value">68%</div>
+                <div class="card-subtext">System capacity</div>
+            </div>
+            <div class="card">
+                <div class="card-title">🛡️ Protection Level</div>
+                <div class="card-value">MAX</div>
+                <div class="card-subtext">All systems active</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Attack Types Distribution</div>
+            <div class="bar-chart">
+                <div class="chart-bar">
+                    <div class="bar-label">DDoS</div>
+                    <div class="bar-value" style="width: 85%;">3,421</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">Brute Force</div>
+                    <div class="bar-value" style="width: 65%;">2,604</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">SQL Injection</div>
+                    <div class="bar-value" style="width: 52%;">2,089</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">XSS</div>
+                    <div class="bar-value" style="width: 48%;">1,932</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">Other</div>
+                    <div class="bar-value" style="width: 42%;">1,689</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Top Attack Origins</div>
+            <div class="bar-chart">
+                <div class="chart-bar">
+                    <div class="bar-label">China</div>
+                    <div class="bar-value" style="width: 92%;">3,847</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">Russia</div>
+                    <div class="bar-value" style="width: 78%;">3,261</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">India</div>
+                    <div class="bar-value" style="width: 65%;">2,724</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">USA</div>
+                    <div class="bar-value" style="width: 54%;">2,261</div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">Brazil</div>
+                    <div class="bar-value" style="width: 41%;">1,715</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="update-time">Last update: <span id="updateTime">Just now</span></div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('updateTime').textContent = now.toLocaleTimeString();
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Simulate value changes
+        setInterval(() => {
+            document.getElementById('totalThreats').textContent = (Math.floor(Math.random() * 5000) + 10000).toLocaleString();
+            document.getElementById('avgResponse').textContent = (Math.floor(Math.random() * 100) + 20) + 'ms';
+            document.getElementById('currentLoad').textContent = (Math.floor(Math.random() * 40) + 40) + '%';
+        }, 3000);
+    </script>
+</body>
+</html>

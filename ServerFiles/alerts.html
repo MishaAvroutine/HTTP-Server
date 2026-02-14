@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts - Attack Visualization</title>
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="alerts.css">
+</head>
+<body>
+    <div class="header">
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">🌍 LIVE MAP</a>
+            <a href="dashboard.html" class="nav-link">📊 DASHBOARD</a>
+            <a href="alerts.html" class="nav-link active">⚠️ ALERTS</a>
+            <a href="analytics.html" class="nav-link">📈 ANALYTICS</a>
+            <a href="settings.html" class="nav-link">⚙️ SETTINGS</a>
+        </div>
+        <div class="title">⚠️ ACTIVE ALERTS</div>
+    </div>
+
+    <div class="main-content">
+        <div class="filter-bar">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Critical</button>
+            <button class="filter-btn">Warning</button>
+            <button class="filter-btn">Info</button>
+        </div>
+
+        <div class="section-title">🔴 Critical Threats</div>
+        
+        <div class="alert critical">
+            <div class="alert-icon">🔴</div>
+            <div class="alert-content">
+                <div class="alert-title">Massive DDoS Attack Detected</div>
+                <div class="alert-description">Distributed Denial of Service from 847 unique IPs targeting primary server</div>
+                <div class="alert-details">From: China (198.51.100.0/24) | Protocol: HTTP | Packets: 94,231/sec</div>
+            </div>
+            <div class="alert-time">2 min ago</div>
+            <button class="alert-action">Block</button>
+        </div>
+
+        <div class="alert critical">
+            <div class="alert-icon">🔴</div>
+            <div class="alert-content">
+                <div class="alert-title">Brute Force Attack - SSH</div>
+                <div class="alert-description">Multiple failed login attempts on admin panel detected</div>
+                <div class="alert-details">From: Russia (192.0.2.100) | Protocol: SSH | Attempts: 2,341</div>
+            </div>
+            <div class="alert-time">5 min ago</div>
+            <button class="alert-action">Lock</button>
+        </div>
+
+        <div class="alert critical">
+            <div class="alert-icon">🔴</div>
+            <div class="alert-content">
+                <div class="alert-title">Ransomware Signature Match</div>
+                <div class="alert-description">Known ransomware variant detected in network traffic</div>
+                <div class="alert-details">From: India (203.0.113.50) | Signature: WannaCry.V2 | Threat Level: 99%</div>
+            </div>
+            <div class="alert-time">8 min ago</div>
+            <button class="alert-action">Quarantine</button>
+        </div>
+
+        <div class="section-title">🟡 Warnings</div>
+
+        <div class="alert warning">
+            <div class="alert-icon">🟡</div>
+            <div class="alert-content">
+                <div class="alert-title">Unusual Traffic Pattern</div>
+                <div class="alert-description">System detected abnormal outbound data transfer</div>
+                <div class="alert-details">From: USA (198.18.0.1) | Volume: 2.3 GB | Duration: 47 minutes</div>
+            </div>
+            <div class="alert-time">12 min ago</div>
+            <button class="alert-action">Investigate</button>
+        </div>
+
+        <div class="alert warning">
+            <div class="alert-icon">🟡</div>
+            <div class="alert-content">
+                <div class="alert-title">Multiple Failed Authentication</div>
+                <div class="alert-description">Repeated login failures from multiple sources</div>
+                <div class="alert-details">From: Brazil (192.24.12.0/22) | Attempts: 847 | Service: Database</div>
+            </div>
+            <div class="alert-time">18 min ago</div>
+            <button class="alert-action">Review</button>
+        </div>
+
+        <div class="alert warning">
+            <div class="alert-icon">🟡</div>
+            <div class="alert-content">
+                <div class="alert-title">High Memory Usage Detected</div>
+                <div class="alert-description">System memory consumption exceeded threshold</div>
+                <div class="alert-details">Server: API_Gateway | Usage: 87% | Recommendation: Restart service</div>
+            </div>
+            <div class="alert-time">22 min ago</div>
+            <button class="alert-action">Restart</button>
+        </div>
+
+        <div class="section-title">🟢 Information</div>
+
+        <div class="alert info">
+            <div class="alert-icon">ℹ️</div>
+            <div class="alert-content">
+                <div class="alert-title">Security Update Applied</div>
+                <div class="alert-description">Firewall rules have been successfully updated</div>
+                <div class="alert-details">Updated at: 14:32:17 UTC | Rules: 47 new | Version: 2.4.1</div>
+            </div>
+            <div class="alert-time">1 hour ago</div>
+            <button class="alert-action">Details</button>
+        </div>
+
+        <div class="alert info">
+            <div class="alert-icon">ℹ️</div>
+            <div class="alert-content">
+                <div class="alert-title">System Backup Completed</div>
+                <div class="alert-description">Daily backup finished successfully</div>
+                <div class="alert-details">Size: 1.2 TB | Duration: 47 minutes | Status: Verified</div>
+            </div>
+            <div class="alert-time">3 hours ago</div>
+            <button class="alert-action">View</button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

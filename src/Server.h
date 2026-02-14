@@ -8,9 +8,7 @@
 #include<mutex>
 #include"SocketUtils.h"
 
-#include"HttpReponseOk200.h"
-#include"HttpResponse.h"
-#include"HttpResponseNotFound404.h"
+#include"HttpResponses/HttpResponses.h"
 
 #define LOAD_BALANCE 16 // change this according to your power of computing. since i don't wanna blow up my pc
 #define KB 1024
@@ -38,7 +36,7 @@ private:
 
 	void handleClient(const SOCKET& clientSocket);
 	void disconnectClient(const SOCKET& socket);
-	HttpResponse* handleGETRequest(std::string& request);
+	HttpResponse* handleGETRequest(const std::string& request);
 	HttpResponse* getResponse(const std::string& fileName);
 	HttpResponse* responseCode(const std::string& contents,const std::string& fileName);
 };

@@ -1,0 +1,123 @@
+/* Shared Styles - Common across all pages */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(135deg, #0a0e27 0%, #16213e 50%, #0f3460 100%);
+    color: #00ff88;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: rgba(10, 14, 39, 0.95);
+    border-bottom: 2px solid #00ff88;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    gap: 40px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+}
+
+.nav-link {
+    color: #00ff88;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    border: 1px solid #00ff88;
+    text-shadow: 0 0 10px #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+.nav-link.active {
+    border: 1px solid #ff006e;
+    color: #ff006e;
+    text-shadow: 0 0 10px #ff006e;
+    box-shadow: 0 0 10px rgba(255, 0, 110, 0.2);
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ff88;
+    letter-spacing: 3px;
+}
+
+.main-content {
+    margin-top: 80px;
+    padding: 30px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 255, 136, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 136, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 136, 0.5);
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 5px #00ff88;
+    }
+    50% {
+        text-shadow: 0 0 20px #00ff88;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}

@@ -1,0 +1,192 @@
+/* Settings Page Styles */
+
+.settings-container {
+    max-width: 800px;
+}
+
+.settings-section {
+    background: rgba(0, 255, 136, 0.05);
+    border: 2px solid #00ff88;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+.section-title {
+    font-size: 18px;
+    color: #ff006e;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+    padding-bottom: 15px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.setting-name {
+    font-size: 14px;
+    color: #00ff88;
+    font-weight: bold;
+}
+
+.setting-description {
+    font-size: 11px;
+    color: rgba(0, 255, 136, 0.6);
+}
+
+.toggle {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background: rgba(0, 255, 136, 0.2);
+    border: 1px solid #00ff88;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle.on {
+    background: rgba(255, 0, 110, 0.3);
+    border-color: #ff006e;
+}
+
+.toggle::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #00ff88;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s ease;
+}
+
+.toggle.on::before {
+    left: 26px;
+    background: #ff006e;
+}
+
+.input-field {
+    background: rgba(0, 255, 136, 0.08);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    width: 200px;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #ff006e;
+    box-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
+    background: rgba(255, 0, 110, 0.05);
+}
+
+.input-field::placeholder {
+    color: rgba(0, 255, 136, 0.3);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #ff006e, #ff4444);
+    border: 1px solid #ff006e;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 15px rgba(255, 0, 110, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid #00ff88;
+    color: #00ff88;
+}
+
+.btn-secondary:hover {
+    background: rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.status-message {
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 15px;
+    font-size: 12px;
+    text-align: center;
+    display: none;
+}
+
+.status-message.success {
+    background: rgba(0, 255, 136, 0.2);
+    border: 1px solid #00ff88;
+    color: #00ff88;
+    display: block;
+}
+
+.status-message.error {
+    background: rgba(255, 0, 110, 0.2);
+    border: 1px solid #ff006e;
+    color: #ff006e;
+    display: block;
+}
+
+.select-field {
+    background: rgba(0, 255, 136, 0.08);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    width: 200px;
+}
+
+.select-field:focus {
+    outline: none;
+    border-color: #ff006e;
+    box-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
+}
+
+.select-field option {
+    background: #0a0e27;
+    color: #00ff88;
+}

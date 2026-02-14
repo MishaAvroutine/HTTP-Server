@@ -1,0 +1,124 @@
+/* Alerts Page Styles */
+
+.alert {
+    background: rgba(255, 0, 110, 0.08);
+    border-left: 4px solid #ff006e;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 20px;
+    align-items: center;
+    animation: slideIn 0.5s ease-out;
+}
+
+.alert.critical {
+    border-left-color: #ff0000;
+    background: rgba(255, 0, 0, 0.08);
+}
+
+.alert.warning {
+    border-left-color: #ffff00;
+    background: rgba(255, 255, 0, 0.08);
+}
+
+.alert.info {
+    border-left-color: #00ff88;
+    background: rgba(0, 255, 136, 0.08);
+}
+
+.alert-icon {
+    font-size: 24px;
+}
+
+.alert-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.alert-title {
+    font-weight: bold;
+    color: #ff006e;
+    font-size: 14px;
+}
+
+.alert.critical .alert-title {
+    color: #ff0000;
+}
+
+.alert.warning .alert-title {
+    color: #ffff00;
+}
+
+.alert.info .alert-title {
+    color: #00ff88;
+}
+
+.alert-description {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.alert-details {
+    font-size: 11px;
+    color: rgba(0, 255, 136, 0.6);
+}
+
+.alert-time {
+    font-size: 11px;
+    color: rgba(0, 255, 136, 0.5);
+    white-space: nowrap;
+}
+
+.alert-action {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    color: #00ff88;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.alert-action:hover {
+    background: rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.section-title {
+    font-size: 16px;
+    color: #ff006e;
+    margin: 30px 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+    padding-bottom: 10px;
+}
+
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    color: #00ff88;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: rgba(0, 255, 136, 0.2);
+    border-color: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}

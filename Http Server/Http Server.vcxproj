@@ -124,17 +124,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\HttpReponseOk200.cpp" />
-    <ClCompile Include="..\src\HttpResponse.cpp" />
-    <ClCompile Include="..\src\HttpResponseNotFound404.cpp" />
+    <ClCompile Include="..\src\HttpResponses\HttpReponseOk200.cpp" />
+    <ClCompile Include="..\src\HttpResponses\HttpResponse.cpp" />
+    <ClCompile Include="..\src\HttpResponses\HttpResponse403Forbidden.cpp" />
+    <ClCompile Include="..\src\HttpResponses\HttpResponseNotFound404.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Server.cpp" />
     <ClCompile Include="..\src\SocketUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\HttpReponseOk200.h" />
-    <ClInclude Include="..\src\HttpResponse.h" />
-    <ClInclude Include="..\src\HttpResponseNotFound404.h" />
+    <ClInclude Include="..\src\HttpResponses\HttpReponseOk200.h" />
+    <ClInclude Include="..\src\HttpResponses\HttpResponse.h" />
+    <ClInclude Include="..\src\HttpResponses\HttpResponse403Forbidden.h" />
+    <ClInclude Include="..\src\HttpResponses\HttpResponseNotFound404.h" />
+    <ClInclude Include="..\src\HttpResponses\HttpResponses.h" />
     <ClInclude Include="..\src\Server.h" />
     <ClInclude Include="..\src\SocketUtils.h" />
   </ItemGroup>

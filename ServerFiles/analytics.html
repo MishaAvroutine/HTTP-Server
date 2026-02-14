@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Attack Visualization</title>
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="analytics.css">
+</head>
+<body>
+    <div class="header">
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">🌍 LIVE MAP</a>
+            <a href="dashboard.html" class="nav-link">📊 DASHBOARD</a>
+            <a href="alerts.html" class="nav-link">⚠️ ALERTS</a>
+            <a href="analytics.html" class="nav-link active">📈 ANALYTICS</a>
+            <a href="settings.html" class="nav-link">⚙️ SETTINGS</a>
+        </div>
+        <div class="title">📈 ANALYTICS</div>
+    </div>
+
+    <div class="main-content">
+        <div class="time-range">
+            <button class="range-btn">1H</button>
+            <button class="range-btn active">24H</button>
+            <button class="range-btn">7D</button>
+            <button class="range-btn">30D</button>
+            <button class="range-btn">1Y</button>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Attack Attempts Over Time</div>
+            <div class="line-chart">
+                <div class="chart-bar" style="height: 45%;"><span class="chart-bar-label">2.3K</span></div>
+                <div class="chart-bar" style="height: 62%;"><span class="chart-bar-label">3.1K</span></div>
+                <div class="chart-bar" style="height: 89%;"><span class="chart-bar-label">4.5K</span></div>
+                <div class="chart-bar" style="height: 73%;"><span class="chart-bar-label">3.7K</span></div>
+                <div class="chart-bar" style="height: 95%;"><span class="chart-bar-label">4.8K</span></div>
+                <div class="chart-bar" style="height: 68%;"><span class="chart-bar-label">3.4K</span></div>
+                <div class="chart-bar" style="height: 100%;"><span class="chart-bar-label">5.1K</span></div>
+            </div>
+            <div class="chart-axis">00:00 - 04:00 - 08:00 - 12:00 - 16:00 - 20:00 - 23:59</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-value">24,847</div>
+                <div class="stat-card-label">Total Attacks</div>
+                <div class="trend up">↑ 12% vs yesterday</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-value">847</div>
+                <div class="stat-card-label">Peak Hour</div>
+                <div class="trend">14:00-15:00 UTC</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-value">92.3%</div>
+                <div class="stat-card-label">Block Rate</div>
+                <div class="trend down">↓ 2% vs yesterday</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-value">15.3</div>
+                <div class="stat-card-label">Avg Response (ms)</div>
+                <div class="trend down">↓ Improved</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Attack Heatmap by Hour (Last 24H)</div>
+            <div class="heatmap" id="heatmap"></div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Top Countries by Attack Volume</div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                <div>
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px;">
+                            <span>China</span>
+                            <span style="color: #ff006e;">3,847</span>
+                        </div>
+                        <div style="background: rgba(0,255,136,0.2); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: linear-gradient(90deg, #ff006e, #ff4444); height: 100%; width: 78%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px;">
+                            <span>Russia</span>
+                            <span style="color: #ff006e;">3,261</span>
+                        </div>
+                        <div style="background: rgba(0,255,136,0.2); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: linear-gradient(90deg, #ff006e, #ff4444); height: 100%; width: 66%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px;">
+                            <span>India</span>
+                            <span style="color: #ff006e;">2,724</span>
+                        </div>
+                        <div style="background: rgba(0,255,136,0.2); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: linear-gradient(90deg, #ff006e, #ff4444); height: 100%; width: 55%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px;">
+                            <span>USA</span>
+                            <span style="color: #ff006e;">2,261</span>
+                        </div>
+                        <div style="background: rgba(0,255,136,0.2); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: linear-gradient(90deg, #ff006e, #ff4444); height: 100%; width: 46%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px;">
+                            <span>Brazil</span>
+                            <span style="color: #ff006e;">1,847</span>
+                        </div>
+                        <div style="background: rgba(0,255,136,0.2); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: linear-gradient(90deg, #ff006e, #ff4444); height: 100%; width: 37%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px;">
+                            <span>Germany</span>
+                            <span style="color: #ff006e;">1,432</span>
+                        </div>
+                        <div style="background: rgba(0,255,136,0.2); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: linear-gradient(90deg, #ff006e, #ff4444); height: 100%; width: 29%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate heatmap
+        const heatmap = document.getElementById('heatmap');
+        for (let i = 0; i < 24; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'heatmap-cell';
+            const intensity = Math.random();
+            if (intensity > 0.7) {
+                cell.classList.add('hot');
+                cell.style.opacity = intensity;
+            } else {
+                cell.style.opacity = 0.3 + intensity * 0.4;
+            }
+            heatmap.appendChild(cell);
+        }
+
+        // Range buttons
+        document.querySelectorAll('.range-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

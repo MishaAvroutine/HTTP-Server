@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\HttpResponses">
+      <UniqueIdentifier>{93c7a11b-3002-47ac-87ef-1555bb09dd0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\HttpResponseHeaders">
+      <UniqueIdentifier>{8fca72e4-a060-4f89-abd7-5d9437965796}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -24,14 +30,17 @@
     <ClCompile Include="..\src\SocketUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\HttpResponse.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\src\HttpResponses\HttpReponseOk200.cpp">
+      <Filter>Source Files\HttpResponses</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\HttpReponseOk200.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\src\HttpResponses\HttpResponse.cpp">
+      <Filter>Source Files\HttpResponses</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\HttpResponseNotFound404.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\src\HttpResponses\HttpResponse403Forbidden.cpp">
+      <Filter>Source Files\HttpResponses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\HttpResponses\HttpResponseNotFound404.cpp">
+      <Filter>Source Files\HttpResponses</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,14 +50,20 @@
     <ClInclude Include="..\src\SocketUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\HttpResponse.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\HttpResponses\HttpReponseOk200.h">
+      <Filter>Header Files\HttpResponseHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\HttpReponseOk200.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\HttpResponses\HttpResponse.h">
+      <Filter>Header Files\HttpResponseHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\HttpResponseNotFound404.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\HttpResponses\HttpResponse403Forbidden.h">
+      <Filter>Header Files\HttpResponseHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\HttpResponses\HttpResponses.h">
+      <Filter>Header Files\HttpResponseHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\HttpResponses\HttpResponseNotFound404.h">
+      <Filter>Header Files\HttpResponseHeaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
