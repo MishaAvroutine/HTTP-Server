@@ -77,23 +77,16 @@ void Server::handleClient(const SOCKET& clientSocket)
 			if (headers.empty())
 				break;
 
-			std::unique_ptr<HttpResponse> response;
+			HttpParser parser(headers);
 
-			std::istringstream iss(headers);
-			std::string method;
-			iss >> method;
-
-			if (method == "GET")
-			{
-				response.reset(handleGETRequest(headers));
-			}
+			std::unique_ptr<HttpResponse> response = parser.handleRequest();
 
 			if (response)
 			{
 				SocketUtils::sendToClient(response->getHeaders(), clientSocket);
 			}
 
-			if (headers.find("Connection: keep-alive") == std::string::npos)
+			if (*parser.getHeader("connection") != "keep-alive")
 				break;
 		}
 		catch (const std::exception& exp)
@@ -114,84 +107,4 @@ void Server::disconnectClient(const SOCKET& socket)
 	connectedClients--;
 	std::cout << "Client Disconnected: " << socket << std::endl;
 	closesocket(socket);
-}
-
-
-/*
-function to handle the HTTP GET request
-input: the request
-ouput: the ready packet after parsing
-*/
-HttpResponse* Server::handleGETRequest(const std::string& request)
-{
-	std::stringstream requestStream(request);
-	std::string line;
-	std::getline(requestStream, line);
-
-	size_t it = line.find(" HTTP/1.1");
-	if (it == std::string::npos)
-		throw std::runtime_error("Invalid HTTP GET");
-
-	std::string fileName = line.substr(GET_PREFIX_LEN, it - GET_PREFIX_LEN);
-
-	if (fileName.empty() || fileName == "/")
-		fileName = INDEX_FILE;
-
-	if (fileName.front() == '/')
-		fileName.erase(0, 1);
-
-	if (fileName.find("..") != std::string::npos)
-		return new  HttpResponse403Forbidden();
-
-	return getResponse(fileName);
-}
-
-
-/*
-function to ge the response after parsing
-input: filename
-output: http mime header/data
-*/
-HttpResponse* Server::getResponse(const std::string& fileName)
-{
-	std::string content = readFile(fileName);
-	return responseCode(content, fileName);
-}
-
-
-/*
-function to get the httpResponse code packet
-input: contents of the file and it's filename
-output: the packet with the response ready including headers and the contents
-*/
-HttpResponse* Server::responseCode(const std::string& contents,const std::string& fileName)
-{
-	HttpResponse* response = nullptr;
-	switch (contents.size())
-	{
-		case 0:
-			response = new HttpResponseNotFound404();
-			break;
-		default:
-			response = new HttpReponseOk200(contents,fileName);
-			break;
-	}
-	return response;
-}
-
-
-/*
-function to read the file with the filename
-input: std::string filename
-output: std::string contaning file contents
-*/
-std::string Server::readFile(const std::string& fileName)
-{
-	std::ifstream file("../ServerFiles/" + fileName, std::ios::binary);
-	if (!file.is_open())
-		return "";
-
-	std::ostringstream ss;
-	ss << file.rdbuf();
-	return ss.str();
 }
