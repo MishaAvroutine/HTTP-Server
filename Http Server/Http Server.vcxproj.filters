@@ -42,6 +42,12 @@
     <ClCompile Include="..\src\HttpResponses\HttpResponseNotFound404.cpp">
       <Filter>Source Files\HttpResponses</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\StringUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\HttpParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Server.h">
@@ -64,6 +70,12 @@
     </ClInclude>
     <ClInclude Include="..\src\HttpResponses\HttpResponseNotFound404.h">
       <Filter>Header Files\HttpResponseHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\HttpParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\StringUtils.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

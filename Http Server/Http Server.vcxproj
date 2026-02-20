@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\HttpParser.cpp" />
     <ClCompile Include="..\src\HttpResponses\HttpReponseOk200.cpp" />
     <ClCompile Include="..\src\HttpResponses\HttpResponse.cpp" />
     <ClCompile Include="..\src\HttpResponses\HttpResponse403Forbidden.cpp" />
@@ -131,8 +132,10 @@
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Server.cpp" />
     <ClCompile Include="..\src\SocketUtils.cpp" />
+    <ClCompile Include="..\src\StringUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\HttpParser.h" />
     <ClInclude Include="..\src\HttpResponses\HttpReponseOk200.h" />
     <ClInclude Include="..\src\HttpResponses\HttpResponse.h" />
     <ClInclude Include="..\src\HttpResponses\HttpResponse403Forbidden.h" />
@@ -140,6 +143,7 @@
     <ClInclude Include="..\src\HttpResponses\HttpResponses.h" />
     <ClInclude Include="..\src\Server.h" />
     <ClInclude Include="..\src\SocketUtils.h" />
+    <ClInclude Include="..\src\StringUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
